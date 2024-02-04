@@ -43,6 +43,7 @@
             this.labelId = new System.Windows.Forms.Label();
             this.studentNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.marksDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.tblStudentBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.winFormCRUDDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -125,6 +126,7 @@
             // dataGridView1
             // 
             this.dataGridView1.AutoGenerateColumns = false;
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.studentNameDataGridViewTextBoxColumn,
@@ -157,7 +159,6 @@
             this.studentNameDataGridViewTextBoxColumn.MinimumWidth = 6;
             this.studentNameDataGridViewTextBoxColumn.Name = "studentNameDataGridViewTextBoxColumn";
             this.studentNameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.studentNameDataGridViewTextBoxColumn.Width = 125;
             // 
             // marksDataGridViewTextBoxColumn
             // 
@@ -166,13 +167,23 @@
             this.marksDataGridViewTextBoxColumn.MinimumWidth = 6;
             this.marksDataGridViewTextBoxColumn.Name = "marksDataGridViewTextBoxColumn";
             this.marksDataGridViewTextBoxColumn.ReadOnly = true;
-            this.marksDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(21, 390);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(231, 23);
+            this.button1.TabIndex = 10;
+            this.button1.Text = "add new row";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.labelId);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.buttonUpdate);
@@ -209,6 +220,7 @@
         private System.Windows.Forms.Label labelId;
         private System.Windows.Forms.DataGridViewTextBoxColumn studentNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn marksDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Button button1;
     }
 }
 

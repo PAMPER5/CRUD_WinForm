@@ -70,7 +70,11 @@ namespace CRUD_WinForm
         {
             // TODO: данная строка кода позволяет загрузить данные в таблицу "winFormCRUDDataSet.tblStudent". При необходимости она может быть перемещена или удалена.
             this.tblStudentTableAdapter.Fill(this.winFormCRUDDataSet.tblStudent);
+        }
 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            tblStudentBindingSource.AddNew();
         }
     }
 }
