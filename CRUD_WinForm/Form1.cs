@@ -1,13 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data.SqlClient;
+using System.Data;
 
 namespace CRUD_WinForm
 {
@@ -75,6 +69,17 @@ namespace CRUD_WinForm
         private void button1_Click(object sender, EventArgs e)
         {
             tblStudentBindingSource.AddNew();
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+            string strConnection = "data source=murzilca;initial catalog=WinFormCRUD;Integrated Security=True;";
+            SqlConnection connection = new SqlConnection(strConnection);
+            string searchString = $"select * from tblStudent where concat(marks, studentName) like '%" + textBox1.Text + "%'";
+            SqlDataAdapter dataAdapter = new SqlDataAdapter(searchString, connection);
+            DataTable dt = new DataTable();
+            dataAdapter.Fill(dt);
+            dataGridView1.DataSource = dt;
         }
     }
 }
