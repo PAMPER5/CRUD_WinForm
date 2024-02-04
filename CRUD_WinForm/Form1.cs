@@ -31,13 +31,14 @@ namespace CRUD_WinForm
             else
                 MessageBox.Show("Fail");
             connection.Close();
+            this.tblStudentTableAdapter.Fill(this.winFormCRUDDataSet.tblStudent);
         }
 
         private void buttonDelete_Click(object sender, EventArgs e)
         {
             string strConnection = "data source=murzilca;initial catalog=WinFormCRUD;Integrated Security=True;";
             SqlConnection connection = new SqlConnection(strConnection);
-            string sqlString = "delete from tblStudent where studentName='" + textBoxName.Text + "'";
+            string sqlString = "delete from tblStudent where studenId='" + labelId.Text + "'";
             SqlCommand command = new SqlCommand(sqlString, connection);
             connection.Open();
             int n = command.ExecuteNonQuery();
@@ -46,13 +47,14 @@ namespace CRUD_WinForm
             else
                 MessageBox.Show("Fail");
             connection.Close();
+            this.tblStudentTableAdapter.Fill(this.winFormCRUDDataSet.tblStudent);
         }
 
         private void buttonUpdate_Click(object sender, EventArgs e)
         {
             string strConnection = "data source=murzilca;initial catalog=WinFormCRUD;Integrated Security=True;";
             SqlConnection connection = new SqlConnection(strConnection);
-            string sqlString = "update tblStudent set marks='" + textBoxMark.Text + "' where studentName = '" + textBoxName.Text + "' ";
+            string sqlString = "update tblStudent set marks='" + textBoxMark.Text + "', studentName='" + textBoxName.Text + "'  where studenId='" + labelId.Text + "' ";
             SqlCommand command = new SqlCommand(sqlString, connection);
             connection.Open();
             int n = command.ExecuteNonQuery();
@@ -61,6 +63,14 @@ namespace CRUD_WinForm
             else
                 MessageBox.Show("Fail");
             connection.Close();
+            this.tblStudentTableAdapter.Fill(this.winFormCRUDDataSet.tblStudent);
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            // TODO: данная строка кода позволяет загрузить данные в таблицу "winFormCRUDDataSet.tblStudent". При необходимости она может быть перемещена или удалена.
+            this.tblStudentTableAdapter.Fill(this.winFormCRUDDataSet.tblStudent);
+
         }
     }
 }

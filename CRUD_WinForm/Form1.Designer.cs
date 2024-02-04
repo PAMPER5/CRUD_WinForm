@@ -28,19 +28,30 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.labelName = new System.Windows.Forms.Label();
             this.labelMark = new System.Windows.Forms.Label();
             this.textBoxName = new System.Windows.Forms.TextBox();
+            this.tblStudentBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.winFormCRUDDataSet = new CRUD_WinForm.WinFormCRUDDataSet();
             this.textBoxMark = new System.Windows.Forms.TextBox();
             this.buttonInsert = new System.Windows.Forms.Button();
             this.buttonDelete = new System.Windows.Forms.Button();
             this.buttonUpdate = new System.Windows.Forms.Button();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.tblStudentTableAdapter = new CRUD_WinForm.WinFormCRUDDataSetTableAdapters.tblStudentTableAdapter();
+            this.labelId = new System.Windows.Forms.Label();
+            this.studentNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.marksDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.tblStudentBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.winFormCRUDDataSet)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // labelName
             // 
             this.labelName.AutoSize = true;
-            this.labelName.Location = new System.Drawing.Point(118, 47);
+            this.labelName.Location = new System.Drawing.Point(12, 195);
             this.labelName.Name = "labelName";
             this.labelName.Size = new System.Drawing.Size(44, 16);
             this.labelName.TabIndex = 0;
@@ -49,7 +60,7 @@
             // labelMark
             // 
             this.labelMark.AutoSize = true;
-            this.labelMark.Location = new System.Drawing.Point(121, 125);
+            this.labelMark.Location = new System.Drawing.Point(12, 239);
             this.labelMark.Name = "labelMark";
             this.labelMark.Size = new System.Drawing.Size(37, 16);
             this.labelMark.TabIndex = 1;
@@ -57,21 +68,33 @@
             // 
             // textBoxName
             // 
-            this.textBoxName.Location = new System.Drawing.Point(196, 47);
+            this.textBoxName.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.tblStudentBindingSource, "studentName", true));
+            this.textBoxName.Location = new System.Drawing.Point(78, 189);
             this.textBoxName.Name = "textBoxName";
             this.textBoxName.Size = new System.Drawing.Size(205, 22);
             this.textBoxName.TabIndex = 2;
             // 
+            // tblStudentBindingSource
+            // 
+            this.tblStudentBindingSource.DataMember = "tblStudent";
+            this.tblStudentBindingSource.DataSource = this.winFormCRUDDataSet;
+            // 
+            // winFormCRUDDataSet
+            // 
+            this.winFormCRUDDataSet.DataSetName = "WinFormCRUDDataSet";
+            this.winFormCRUDDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
             // textBoxMark
             // 
-            this.textBoxMark.Location = new System.Drawing.Point(196, 118);
+            this.textBoxMark.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.tblStudentBindingSource, "marks", true));
+            this.textBoxMark.Location = new System.Drawing.Point(78, 239);
             this.textBoxMark.Name = "textBoxMark";
             this.textBoxMark.Size = new System.Drawing.Size(205, 22);
             this.textBoxMark.TabIndex = 3;
             // 
             // buttonInsert
             // 
-            this.buttonInsert.Location = new System.Drawing.Point(166, 217);
+            this.buttonInsert.Location = new System.Drawing.Point(15, 341);
             this.buttonInsert.Name = "buttonInsert";
             this.buttonInsert.Size = new System.Drawing.Size(75, 23);
             this.buttonInsert.TabIndex = 4;
@@ -81,7 +104,7 @@
             // 
             // buttonDelete
             // 
-            this.buttonDelete.Location = new System.Drawing.Point(274, 217);
+            this.buttonDelete.Location = new System.Drawing.Point(96, 341);
             this.buttonDelete.Name = "buttonDelete";
             this.buttonDelete.Size = new System.Drawing.Size(75, 23);
             this.buttonDelete.TabIndex = 5;
@@ -91,7 +114,7 @@
             // 
             // buttonUpdate
             // 
-            this.buttonUpdate.Location = new System.Drawing.Point(381, 217);
+            this.buttonUpdate.Location = new System.Drawing.Point(177, 341);
             this.buttonUpdate.Name = "buttonUpdate";
             this.buttonUpdate.Size = new System.Drawing.Size(75, 23);
             this.buttonUpdate.TabIndex = 6;
@@ -99,11 +122,59 @@
             this.buttonUpdate.UseVisualStyleBackColor = true;
             this.buttonUpdate.Click += new System.EventHandler(this.buttonUpdate_Click);
             // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AutoGenerateColumns = false;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.studentNameDataGridViewTextBoxColumn,
+            this.marksDataGridViewTextBoxColumn});
+            this.dataGridView1.DataSource = this.tblStudentBindingSource;
+            this.dataGridView1.Location = new System.Drawing.Point(315, 12);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersWidth = 51;
+            this.dataGridView1.RowTemplate.Height = 24;
+            this.dataGridView1.Size = new System.Drawing.Size(456, 415);
+            this.dataGridView1.TabIndex = 7;
+            // 
+            // tblStudentTableAdapter
+            // 
+            this.tblStudentTableAdapter.ClearBeforeFill = true;
+            // 
+            // labelId
+            // 
+            this.labelId.AutoSize = true;
+            this.labelId.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.tblStudentBindingSource, "studenId", true));
+            this.labelId.Location = new System.Drawing.Point(96, 56);
+            this.labelId.Name = "labelId";
+            this.labelId.Size = new System.Drawing.Size(0, 16);
+            this.labelId.TabIndex = 9;
+            // 
+            // studentNameDataGridViewTextBoxColumn
+            // 
+            this.studentNameDataGridViewTextBoxColumn.DataPropertyName = "studentName";
+            this.studentNameDataGridViewTextBoxColumn.HeaderText = "studentName";
+            this.studentNameDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.studentNameDataGridViewTextBoxColumn.Name = "studentNameDataGridViewTextBoxColumn";
+            this.studentNameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.studentNameDataGridViewTextBoxColumn.Width = 125;
+            // 
+            // marksDataGridViewTextBoxColumn
+            // 
+            this.marksDataGridViewTextBoxColumn.DataPropertyName = "marks";
+            this.marksDataGridViewTextBoxColumn.HeaderText = "marks";
+            this.marksDataGridViewTextBoxColumn.MinimumWidth = 6;
+            this.marksDataGridViewTextBoxColumn.Name = "marksDataGridViewTextBoxColumn";
+            this.marksDataGridViewTextBoxColumn.ReadOnly = true;
+            this.marksDataGridViewTextBoxColumn.Width = 125;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.labelId);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.buttonUpdate);
             this.Controls.Add(this.buttonDelete);
             this.Controls.Add(this.buttonInsert);
@@ -113,6 +184,10 @@
             this.Controls.Add(this.labelName);
             this.Name = "Form1";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.Form1_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.tblStudentBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.winFormCRUDDataSet)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -127,6 +202,13 @@
         private System.Windows.Forms.Button buttonInsert;
         private System.Windows.Forms.Button buttonDelete;
         private System.Windows.Forms.Button buttonUpdate;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private WinFormCRUDDataSet winFormCRUDDataSet;
+        private System.Windows.Forms.BindingSource tblStudentBindingSource;
+        private WinFormCRUDDataSetTableAdapters.tblStudentTableAdapter tblStudentTableAdapter;
+        private System.Windows.Forms.Label labelId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn studentNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn marksDataGridViewTextBoxColumn;
     }
 }
 
