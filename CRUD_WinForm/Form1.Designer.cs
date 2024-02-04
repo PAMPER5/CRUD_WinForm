@@ -34,6 +34,7 @@
             this.textBoxMark = new System.Windows.Forms.TextBox();
             this.buttonInsert = new System.Windows.Forms.Button();
             this.buttonDelete = new System.Windows.Forms.Button();
+            this.buttonUpdate = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // labelName
@@ -88,11 +89,22 @@
             this.buttonDelete.UseVisualStyleBackColor = true;
             this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
             // 
+            // buttonUpdate
+            // 
+            this.buttonUpdate.Location = new System.Drawing.Point(381, 217);
+            this.buttonUpdate.Name = "buttonUpdate";
+            this.buttonUpdate.Size = new System.Drawing.Size(75, 23);
+            this.buttonUpdate.TabIndex = 6;
+            this.buttonUpdate.Text = "Update";
+            this.buttonUpdate.UseVisualStyleBackColor = true;
+            this.buttonUpdate.Click += new System.EventHandler(this.buttonUpdate_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.buttonUpdate);
             this.Controls.Add(this.buttonDelete);
             this.Controls.Add(this.buttonInsert);
             this.Controls.Add(this.textBoxMark);
@@ -114,6 +126,7 @@
         private System.Windows.Forms.TextBox textBoxMark;
         private System.Windows.Forms.Button buttonInsert;
         private System.Windows.Forms.Button buttonDelete;
+        private System.Windows.Forms.Button buttonUpdate;
     }
 }
 

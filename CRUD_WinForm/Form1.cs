@@ -47,5 +47,20 @@ namespace CRUD_WinForm
                 MessageBox.Show("Fail");
             connection.Close();
         }
+
+        private void buttonUpdate_Click(object sender, EventArgs e)
+        {
+            string strConnection = "data source=murzilca;initial catalog=WinFormCRUD;Integrated Security=True;";
+            SqlConnection connection = new SqlConnection(strConnection);
+            string sqlString = "update tblStudent set marks='" + textBoxMark.Text + "' where studentName = '" + textBoxName.Text + "' ";
+            SqlCommand command = new SqlCommand(sqlString, connection);
+            connection.Open();
+            int n = command.ExecuteNonQuery();
+            if (n == 1)
+                MessageBox.Show("Successfull");
+            else
+                MessageBox.Show("Fail");
+            connection.Close();
+        }
     }
 }
