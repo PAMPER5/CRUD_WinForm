@@ -23,11 +23,11 @@ namespace CRUD_WinForm
             try
             {
                 command.ExecuteNonQuery();
-                MessageBox.Show("successfully");
+                MessageBox.Show("Успешно");
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message);
+                MessageBox.Show("Ошибка: " + ex.Message);
             }
             connection.Close();
         }
@@ -40,8 +40,11 @@ namespace CRUD_WinForm
             DataTable dt = new DataTable();
             dataAdapter.Fill(dt);
             dataGridView.DataSource = dt;
+            dataGridView.Columns[0].Visible = false;
         }
-        //передача информации в текстовые поля
+
+
+        #region CRUD tblStudent
         public void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.RowIndex >= 0)
@@ -52,22 +55,32 @@ namespace CRUD_WinForm
                 id = row.Cells[0].Value.ToString();
             }
         }
-
-        #region CRUD tblStudent
         private void buttonInsert_Click(object sender, EventArgs e)
         {
-            sqlCommand("insert into tblStudent values ('" + textBoxName.Text + "','" + textBoxMark.Text + "')");
-            outputDataGridView(dataGridView1, "select * from tblStudent");
+            var result = MessageBox.Show("Вы уверены, что хотите добавить запись?", "Добавление", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                sqlCommand("insert into tblStudent values ('" + textBoxName.Text + "','" + textBoxMark.Text + "')");
+                outputDataGridView(dataGridView1, "select * from tblStudent");
+            }
         }
         private void buttonDelete_Click(object sender, EventArgs e)
         {
-            sqlCommand($"delete from tblStudent where studenId='{id}'");
-            outputDataGridView(dataGridView1, "select * from tblStudent");
+            var result = MessageBox.Show("Вы уверены, что хотите удалить запись?", "Удаление", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                sqlCommand($"delete from tblStudent where studenId='{id}'");
+                outputDataGridView(dataGridView1, "select * from tblStudent");
+            }
         }
         private void buttonUpdate_Click(object sender, EventArgs e)
         {
-            sqlCommand("update tblStudent set marks='"+textBoxMark.Text+"', studentName='"+textBoxName.Text+"'  where studenId='"+id+"'");
-            outputDataGridView(dataGridView1, "select * from tblStudent");
+            var result = MessageBox.Show("Вы уверены, что хотите изменить запись?", "Изменение", MessageBoxButtons.YesNo);
+            if (result == DialogResult.Yes)
+            {
+                sqlCommand("update tblStudent set marks='" + textBoxMark.Text + "', studentName='" + textBoxName.Text + "'  where studenId='" + id + "'");
+                outputDataGridView(dataGridView1, "select * from tblStudent");
+            }
         }
         private void Form1_Load(object sender, EventArgs e)
         {
