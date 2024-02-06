@@ -2,25 +2,18 @@
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using System.Data;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace CRUD_WinForm
 {
     public partial class Form1 : Form
     {
+        string id;
         public Form1()
         {
             InitializeComponent();
         }
-        private void textBox1_TextChanged(object sender, EventArgs e)
-        {
-            string strConnection = "data source=murzilca;initial catalog=WinFormCRUD;Integrated Security=True;";
-            SqlConnection connection = new SqlConnection(strConnection);
-            string searchString = $"select * from tblStudent where concat(marks, studentName) like '%" + textBox1.Text + "%'";
-            SqlDataAdapter dataAdapter = new SqlDataAdapter(searchString, connection);
-            DataTable dt = new DataTable();
-            dataAdapter.Fill(dt);
-            dataGridView1.DataSource = dt;
-        }
+        //вызов sql запросов
         private void sqlCommand(string sqlCommand)
         {
             string strConnection = "data source=murzilca;initial catalog=WinFormCRUD;Integrated Security=True;";
@@ -37,28 +30,49 @@ namespace CRUD_WinForm
                 MessageBox.Show("Error: " + ex.Message);
             }
             connection.Close();
-            this.tblStudentTableAdapter.Fill(this.winFormCRUDDataSet.tblStudent);
+        }
+        //обновление DataGridView
+        private void outputDataGridView(DataGridView dataGridView, string sqlCommand)
+        {
+            string strConnection = "data source=murzilca;initial catalog=WinFormCRUD;Integrated Security=True;";
+            SqlConnection connection = new SqlConnection(strConnection);
+            SqlDataAdapter dataAdapter = new SqlDataAdapter(sqlCommand, connection);
+            DataTable dt = new DataTable();
+            dataAdapter.Fill(dt);
+            dataGridView.DataSource = dt;
+        }
+        //передача информации в текстовые поля
+        public void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = dataGridView1.Rows[e.RowIndex];
+                textBoxName.Text = row.Cells[1].Value.ToString();
+                textBoxMark.Text = row.Cells[2].Value.ToString();
+                id = row.Cells[0].Value.ToString();
+            }
         }
 
+        #region CRUD tblStudent
         private void buttonInsert_Click(object sender, EventArgs e)
         {
             sqlCommand("insert into tblStudent values ('" + textBoxName.Text + "','" + textBoxMark.Text + "')");
+            outputDataGridView(dataGridView1, "select * from tblStudent");
         }
         private void buttonDelete_Click(object sender, EventArgs e)
         {
-            sqlCommand("delete from tblStudent where studenId='" + labelId.Text + "'");
+            sqlCommand($"delete from tblStudent where studenId='{id}'");
+            outputDataGridView(dataGridView1, "select * from tblStudent");
         }
         private void buttonUpdate_Click(object sender, EventArgs e)
         {
-            sqlCommand("update tblStudent set marks='" + textBoxMark.Text + "', studentName='" + textBoxName.Text + "'  where studenId='" + labelId.Text + "' ");
-        }
-        private void button1_Click(object sender, EventArgs e)
-        {
-            tblStudentBindingSource.AddNew();
+            sqlCommand("update tblStudent set marks='"+textBoxMark.Text+"', studentName='"+textBoxName.Text+"'  where studenId='"+id+"'");
+            outputDataGridView(dataGridView1, "select * from tblStudent");
         }
         private void Form1_Load(object sender, EventArgs e)
         {
-            tblStudentTableAdapter.Fill(winFormCRUDDataSet.tblStudent);
+            outputDataGridView(dataGridView1, "select * from tblStudent");
         }
+        #endregion
     }
 }
