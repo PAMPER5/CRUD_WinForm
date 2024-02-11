@@ -75,11 +75,14 @@ namespace CRUD_WinForm
         }
         private void buttonUpdate_Click(object sender, EventArgs e)
         {
-            var result = MessageBox.Show("Вы уверены, что хотите изменить запись?", "Изменение", MessageBoxButtons.YesNo);
-            if (result == DialogResult.Yes)
+            if (textBoxName.Text !="")
             {
-                sqlCommand("update tblStudent set marks='" + textBoxMark.Text + "', studentName='" + textBoxName.Text + "'  where studenId='" + id + "'");
-                outputDataGridView(dataGridView1, "select * from tblStudent");
+                var result = MessageBox.Show("Вы уверены, что хотите изменить запись?", "Изменение", MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
+                {
+                    sqlCommand("update tblStudent set marks='" + textBoxMark.Text + "', studentName='" + textBoxName.Text + "'  where studenId='" + id + "'");
+                    outputDataGridView(dataGridView1, "select * from tblStudent");
+                }
             }
         }
         private void Form1_Load(object sender, EventArgs e)
@@ -87,5 +90,15 @@ namespace CRUD_WinForm
             outputDataGridView(dataGridView1, "select * from tblStudent");
         }
         #endregion
+
+        private void textBoxSearch_TextChanged(object sender, EventArgs e)
+        {
+            if (textBoxSearch.Text.Length >0)
+            {
+                outputDataGridView(dataGridView1, "select * from tblStudent where studentName = '"+textBoxSearch.Text+"'");
+            }
+            else
+            outputDataGridView(dataGridView1, "select * from tblStudent");
+        }
     }
 }

@@ -40,9 +40,11 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.textBoxSearch = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.applicationsBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.winFormCRUDDataSet1BindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.tblStudentBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabControl1.SuspendLayout();
@@ -140,6 +142,8 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.label1);
+            this.tabPage1.Controls.Add(this.textBoxSearch);
             this.tabPage1.Controls.Add(this.dataGridView1);
             this.tabPage1.Controls.Add(this.labelName);
             this.tabPage1.Controls.Add(this.labelMark);
@@ -156,6 +160,14 @@
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
+            // textBoxSearch
+            // 
+            this.textBoxSearch.Location = new System.Drawing.Point(81, 20);
+            this.textBoxSearch.Name = "textBoxSearch";
+            this.textBoxSearch.Size = new System.Drawing.Size(205, 22);
+            this.textBoxSearch.TabIndex = 8;
+            this.textBoxSearch.TextChanged += new System.EventHandler(this.textBoxSearch_TextChanged);
+            // 
             // tabPage2
             // 
             this.tabPage2.Location = new System.Drawing.Point(4, 25);
@@ -170,6 +182,15 @@
             // 
             this.applicationsBindingSource.DataMember = "applications";
             this.applicationsBindingSource.DataSource = this.winFormCRUDDataSet1BindingSource;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(18, 25);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(47, 16);
+            this.label1.TabIndex = 9;
+            this.label1.Text = "Поиск";
             // 
             // Form1
             // 
@@ -206,6 +227,8 @@
         private System.Windows.Forms.TabPage tabPage2;
         private System.Windows.Forms.BindingSource winFormCRUDDataSet1BindingSource;
         private System.Windows.Forms.BindingSource applicationsBindingSource;
+        private System.Windows.Forms.TextBox textBoxSearch;
+        private System.Windows.Forms.Label label1;
     }
 }
 
